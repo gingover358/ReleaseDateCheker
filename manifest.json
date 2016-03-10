@@ -1,0 +1,32 @@
+{
+	
+	"manifest_version": 2,
+	"name" :"release date checker",
+	"version":"1.10",
+	
+	"description": "make your research  easier  in amazon dating research",
+	"icons":"calendar176.png",
+	"options_page":"option.html",
+	
+	"permissions": [
+		"http://amazon.co.jp/",
+		"storage"
+		],
+
+	"icons":{
+		"16" : "images/icon16.png",
+		"32" : "images/icon32.png",
+		"64" : "images/icon64.png",
+		"128" : "images/icon128.png"
+	},
+
+	"content_scripts":[{
+			"matches": ["https://www.amazon.co.jp/*","http://www.amazon.co.jp/*"],
+			"js":["content.js"],
+			"runAt":"document_end"
+		}],
+
+	"background":{
+		"scripts":["background.js"]
+	}
+}
