@@ -65,13 +65,11 @@ if(document.URL.match(regCatalog)){
 	document.getElementById("pagnNextString").addEventListener("click",function(){
 		var previous = document.getElementsByClassName("pagnLA");
 		var next = document.getElementsByClassName("pagnRA");
-		console.log("clicked")
 			for(var i=0; i<previous.length; i++){
 				previous[i] = document.URL;
 				if(document.URL.match(/[0-9]+/)==null){
 					next[i] = document.getElementsByClassName("pagnLink");
 					next[i] = next[i].getAttribute("href");
-					console.log(next[i])
 				}else{
 					/*for nextString*/
 					var reg = /([0-9]+)/;
@@ -79,22 +77,21 @@ if(document.URL.match(regCatalog)){
 					var url = aTag[0].getAttribute("href");
 					var num = url.match(reg);
 					var number = url.match(/page=([0-9]+)/);
-						number[0] = "page=" + (parseInt(number[1])+1);
-						aTag[0].setAttribute("href",url.replace(/page=[0-9]/,number[0]));
+						number[0] = number[0].match(/[0-9]+/)
+					    number[0] = "page=" + (parseInt(number[0])+1);
+						aTag[0].setAttribute("href",url.replace(/page=[0-9]+/,number[0]));
 						url = aTag[0].getAttribute("href");
 						aTag[0].setAttribute("href",url.replace(reg,parseInt(num[1])+1))
 					/*for previous string*/
 					   aTag1 = previous[i].getElementsByTagName("a");
 					   url = aTag[0].getAttribute("href");
-					   console.log(url)
 					   num = url.match(reg);
 					   number = url.match(/page=([0-9]+)/);
-					   number[0] = "page=" + (parseInt(number[1])-2);
-					   console.log(number[0])
+					   number[0] = number[0].match(/[0-9]+/)
+					   number[0] = "page=" + (parseInt(number[0])-2);
 					   aTag1[0].setAttribute("href",url.replace(/page=[0-9]+/,number[0]));
 						url = url.replace(/page=[0-9]+/,number[0])
 						aTag1[0].setAttribute("href",url.replace(reg,parseInt(num[1])-2))
-						console.log(aTag1[0])
 				}
 				/* can rewrite with a function*/
 			}
@@ -117,7 +114,7 @@ if(document.URL.match(regCatalog)){
 					var num = url.match(reg);
 					var number = url.match(/page=([0-9]+)/);
 						number[0] = "page=" + (parseInt(number[1]-1));
-						aTag[0].setAttribute("href",url.replace(/page=[0-9]/,number[0]));
+						aTag[0].setAttribute("href",url.replace(/page=[0-9]+/,number[0]));
 						url = aTag[0].getAttribute("href");
 						aTag[0].setAttribute("href",url.replace(reg,parseInt(num[1])-1))
 					/*for previous string*/
@@ -153,11 +150,3 @@ if(document.getElementById("productTitle")!==null){
 		}
 	})
 }
-
-
-http://z-ecx.images-amazon.com/images/G/01/AUIClients/RetailSearchAssets-02a3cebfef3a3c613f1072714cbe863
-
-var x = document.getElementById("pagn");
- 	x.setAttribute("onclick",function(){
- 		alert("amazon")
- 	})
